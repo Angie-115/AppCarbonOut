@@ -1,4 +1,3 @@
-
 const cacheName = 'carbonout-v1';
 const assets = [
   '/',
@@ -9,8 +8,8 @@ const assets = [
   '/styles.css',
   '/app.js',
   '/manifest.json',
-  '/logo-192.png',
-  '/logo-512.png'
+  '/icons/logo-192.png',
+  '/icons/logo-512.png'
 ];
 
 self.addEventListener('install', (e) => {
