@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#4CAF50">
+  <title>Registro - CarbonOut</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="contenedor-login">
+    <h1>Registro</h1>
+    <form id="registerForm">
+      <input type="email" id="email" placeholder="Correo electrónico" required />
+      <input type="password" id="password" placeholder="Contraseña" required />
+      <button type="submit">Registrarme</button>
+    </form>
+    <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+    <p id="registerError" style="color: red;"></p>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCfPRhVJD9TSwrR_ffBhXUDhELnDiAnC2M",
+      authDomain: "carbonout-88749.firebaseapp.com",
+      projectId: "carbonout-88749",
+      storageBucket: "carbonout-88749.appspot.com",
+      messagingSenderId: "378125062040",
+      appId: "1:378125062040:web:xxxxxx"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const form = document.getElementById("registerForm");
+    const errorMsg = document.getElementById("registerError");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = form.email.value;
+      const password = form.password.value;
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        window.location.href = "perfil.html"; // Redirige al perfil
+      } catch (error) {
+        errorMsg.textContent = "Error al registrarse. Intenta con otro correo.";
+        console.error("Error de registro:", error);
+      }
+    });
+  </script>
+</body>
+</html>

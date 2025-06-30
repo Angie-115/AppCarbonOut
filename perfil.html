@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi perfil - CarbonOut</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Bienvenido a tu perfil</h1>
+    <p id="userEmail"></p>
+    <button id="logoutBtn">Cerrar sesión</button>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCfPRhVJD9TSwrR_ffBhXUDhELnDiAnC2M",
+      authDomain: "carbonout-88749.firebaseapp.com",
+      projectId: "carbonout-88749",
+      storageBucket: "carbonout-88749.appspot.com",
+      messagingSenderId: "378125062040",
+      appId: "1:378125062040:web:xxxxxx"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const emailDisplay = document.getElementById("userEmail");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        emailDisplay.textContent = `Estás logueado como: ${user.email}`;
+      } else {
+        window.location.href = "login.html";
+      }
+    });
+
+    logoutBtn.addEventListener("click", () => {
+      signOut(auth).then(() => window.location.href = "login.html");
+    });
+  </script>
+</body>
+</html>
