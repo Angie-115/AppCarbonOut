@@ -1,4 +1,4 @@
-/* Header mejorado */
+/* Header responsivo */
 header {
   background: linear-gradient(to right, #00c853, #2196f3);
   padding: 10px 20px;
@@ -15,25 +15,34 @@ header .logo {
 }
 
 header h1 {
-  font-size: 1.8rem;
-  margin: 0;
-  flex: 1;
+  font-size: 1.5rem;
+  margin: 10px 0;
+  flex: 1 1 100%;
+  text-align: center;
+}
+
+nav {
+  flex: 1 1 100%;
+  text-align: center;
+  margin-top: 10px;
 }
 
 nav a {
   color: white;
   margin: 0 10px;
   text-decoration: none;
+  display: inline-block;
+  padding: 8px 12px;
 }
 
 nav a:hover {
   text-decoration: underline;
 }
 
-/* Main structure */
+/* Main */
 main {
   padding: 30px 20px;
-  max-width: 900px;
+  max-width: 1000px;
   margin: auto;
 }
 
@@ -45,6 +54,7 @@ section h2 {
   color: #00796B;
 }
 
+/* Listas con íconos */
 ul {
   list-style-type: none;
   padding-left: 0;
@@ -64,26 +74,21 @@ footer {
   color: #555;
 }
 
+/* Secciones */
 .seccion {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 40px 20px;
   border-top: 1px solid #ccc;
   background-color: #f8fff9;
 }
 
-.contenido {
-  flex: 1 1 50%;
+.contenido, .imagen {
+  flex: 1 1 100%;
   padding: 20px;
   text-align: center;
-}
-
-.imagen {
-  flex: 1 1 40%;
-  text-align: center;
-  padding: 10px;
 }
 
 .imagen img {
@@ -101,8 +106,35 @@ button {
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
   background-color: #388E3C;
+}
+
+/* Media Query para pantallas grandes */
+@media (min-width: 768px) {
+  .contenido {
+    flex: 1 1 50%;
+    padding: 20px;
+    text-align: left;
+  }
+
+  .imagen {
+    flex: 1 1 45%;
+    padding: 20px;
+    text-align: center;
+  }
+
+  header h1 {
+    flex: 0 0 auto;
+    text-align: left;
+  }
+
+  nav {
+    flex: 0 0 auto;
+    text-align: right;
+    margin-top: 0;
+  }
 }
